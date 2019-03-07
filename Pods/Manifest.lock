@@ -1,0 +1,28 @@
+PODS:
+  - Alamofire (4.8.1)
+  - JGProgressHUD (2.0.3)
+  - SkyFloatingLabelTextField (3.6.0)
+  - SwiftyJSON (4.2.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - JGProgressHUD
+  - SkyFloatingLabelTextField (~> 3.0)
+  - SwiftyJSON
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - JGProgressHUD
+    - SkyFloatingLabelTextField
+    - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
+  JGProgressHUD: 12b20a8f4ffe05258f8635c1ab92816e451f904d
+  SkyFloatingLabelTextField: 38164979b79512f9ff9288ad8acfc4bbf5d843e3
+  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
+
+PODFILE CHECKSUM: dd45b58fbbcbd4e087fc1a26e678f726b2c38c54
+
+COCOAPODS: 1.6.0

@@ -14,10 +14,18 @@ extension FavoritesVC {
         self.navigationController?.navigationBar.tintColor = Constants.jade
         self.navigationController?.isNavigationBarHidden = false
         
+        setupTableView()
+    }
+    
+    func setupTableView() {
         favoritesTable = UITableView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
         favoritesTable.register(FavoritesCell.self,forCellReuseIdentifier: "favoritesCell")
         favoritesTable.delegate = self
         favoritesTable.dataSource = self
         view.addSubview(favoritesTable)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setupTableView()
     }
 }

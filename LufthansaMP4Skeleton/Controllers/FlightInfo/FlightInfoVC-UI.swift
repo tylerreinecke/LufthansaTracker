@@ -40,6 +40,14 @@ extension FlightInfoVC {
         routeImage.center = CGPoint(x: view.frame.midX, y: status.frame.maxY + 60)
         routeImage.image = UIImage(named: "routeIcon")
         view.addSubview(routeImage)
+        
+        aircraftCode = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 30))
+        aircraftCode.center = CGPoint(x: view.frame.midX, y: routeImage.frame.maxY)
+        aircraftCode.textAlignment = .center
+        aircraftCode.textColor = Constants.jade
+        aircraftCode.font = UIFont.boldSystemFont(ofSize: 18.0)
+        aircraftCode.text = "#\(flight.aircraftCode!)"
+        view.addSubview(aircraftCode)
     }
     
     func setupDeparture() {
@@ -74,7 +82,7 @@ extension FlightInfoVC {
         depTermGate = UILabel(frame: CGRect(x: 0, y: 0, width: 150, height: 50))
         depTermGate.center = CGPoint(x: origin.frame.midX, y: actualDep.frame.maxY + 30)
         depTermGate.textAlignment = .center
-        depTermGate.text = "\(flight.depTerminal) - \(flight.depGate)"
+        depTermGate.text = "\(flight.depTerminal!) - \(flight.depGate!)"
         depTermGate.font = UIFont.boldSystemFont(ofSize: 28.0)
         depTermGate.textColor = Constants.gray
         view.addSubview(depTermGate)
@@ -94,23 +102,53 @@ extension FlightInfoVC {
         destination.addTarget(self, action: #selector(destinationToAirportInfo), for: .touchUpInside)
         view.addSubview(destination)
         
-        schedArr = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
-        schedArr.center = CGPoint(x: destination.frame.midX, y: destination.frame.maxY + 15)
-        schedArr.textAlignment = .right
+        schedArr = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
+        schedArr.center = CGPoint(x: destination.frame.midX, y: destination.frame.maxY + 40)
+        schedArr.textAlignment = .center
         schedArr.text = flight.arrSchedTimeShort
+        schedArr.font = UIFont.boldSystemFont(ofSize: 28.0)
+        schedArr.textColor = Constants.gray
         view.addSubview(schedArr)
         
-        actualArr = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
-        actualArr.center = CGPoint(x: destination.frame.midX, y: schedArr.frame.maxY + 15)
-        actualArr.textAlignment = .right
+        actualArr = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
+        actualArr.center = CGPoint(x: destination.frame.midX, y: schedArr.frame.maxY + 30)
+        actualArr.textAlignment = .center
         actualArr.text = flight.arrActualTimeShort
+        actualArr.font = UIFont.boldSystemFont(ofSize: 28.0)
+        actualArr.textColor = Constants.redOrange
         view.addSubview(actualArr)
         
-        arrTermGate = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
-        arrTermGate.center = CGPoint(x: destination.frame.midX, y: actualArr.frame.maxY + 15)
-        arrTermGate.textAlignment = .right
-        arrTermGate.text = "\(flight.arrTerminal) - \(flight.arrGate)"
+        arrTermGate = UILabel(frame: CGRect(x: 0, y: 0, width: 150, height: 50))
+        arrTermGate.center = CGPoint(x: destination.frame.midX, y: actualArr.frame.maxY + 30)
+        arrTermGate.textAlignment = .center
+        arrTermGate.text = "\(flight.arrTerminal!) - \(flight.arrGate!)"
+        arrTermGate.font = UIFont.boldSystemFont(ofSize: 28.0)
+        arrTermGate.textColor = Constants.gray
         view.addSubview(arrTermGate)
+        
+        schedTag = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
+        schedTag.center = CGPoint(x: view.frame.midX, y: schedDep.frame.midY)
+        schedTag.text = "Scheduled"
+        schedTag.textAlignment = .center
+        schedTag.textColor = Constants.gray
+        schedTag.font = UIFont.boldSystemFont(ofSize: 15.0)
+        view.addSubview(schedTag)
+        
+        actualTag = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
+        actualTag.center = CGPoint(x: view.frame.midX, y: actualDep.frame.midY)
+        actualTag.text = "Actual"
+        actualTag.textAlignment = .center
+        actualTag.textColor = Constants.gray
+        actualTag.font = UIFont.boldSystemFont(ofSize: 15.0)
+        view.addSubview(actualTag)
+        
+        termGateTag = UILabel(frame: CGRect(x: 0, y: 0, width: 150, height: 30))
+        termGateTag.center = CGPoint(x: view.frame.midX, y: depTermGate.frame.midY)
+        termGateTag.text = "Terminal - Gate"
+        termGateTag.textAlignment = .center
+        termGateTag.textColor = Constants.gray
+        termGateTag.font = UIFont.boldSystemFont(ofSize: 15.0)
+        view.addSubview(termGateTag)
     }
     
     func setupMapView() {

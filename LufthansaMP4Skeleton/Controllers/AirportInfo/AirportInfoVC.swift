@@ -18,6 +18,8 @@ class AirportInfoVC: UIViewController {
     var departingTable : UITableView!
     var arrivingTable : UITableView!
     var viewSelect : UISegmentedControl!
+    var departingFlights : [Flight] = []
+    var arrivingFlights : [Flight] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()

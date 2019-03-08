@@ -1,6 +1,6 @@
 //
 //  Flight.swift
-//  LufthansaMP4Skeleton
+//  LufthansaMP4Skevaron
 //
 //  Created by Max Miranda on 3/2/19.
 //  Copyright © 2019 ___MaxAMiranda___. All rights reserved.
@@ -10,50 +10,102 @@ import Foundation
 import SwiftyJSON
 
 class Flight {
-    let flightNumber : String
-    let flightStatus : String
-    let aircraftCode : String
+    var flightNumber : String?
+    var flightStatus : String?
+    var aircraftCode : String?
     
-    let originAirportCode : String!
-    let depSchedTime : String
-    let depActualTime : String
-    let depSchedTimeShort : String
-    let depActualTimeShort : String
-    let depTerminal : String
-    let depGate : String
+    var originAirportCode : String!
+    var depSchedTime : String?
+    var depActualTime : String?
+    var depSchedTimeShort : String?
+    var depActualTimeShort : String?
+    var depTerminal : String?
+    var depGate : String?
     
-    let destinationAirportCode : String!
-    let arrSchedTime : String
-    let arrActualTime : String
-    let arrSchedTimeShort : String
-    let arrActualTimeShort : String
-    let arrTerminal : String
-    let arrGate : String
+    var destinationAirportCode : String!
+    var arrSchedTime : String?
+    var arrActualTime : String?
+    var arrSchedTimeShort : String?
+    var arrActualTimeShort : String?
+    var arrTerminal : String?
+    var arrGate : String?
     
     init(_ json: JSON, _ flNum: String) {
         flightNumber = flNum
-        self.flightStatus = json["FlightStatusResource"]["Flights"]["Flight"]["FlightStatus"]["Definition"].stringValue
-        self.aircraftCode = json["FlightStatusResource"]["Flights"]["Flight"]["Equipment"]["AircraftCode"].stringValue
+        self.flightStatus = json["FlightStatus"]["Definition"].stringValue
+        if flightStatus == "" {
+            self.flightStatus = "N/A"
+        }
+        self.aircraftCode = json["Equipment"]["AircraftCode"].stringValue
+        if aircraftCode == "" {
+            self.aircraftCode = "N/A"
+        }
+        self.originAirportCode = json["Departure"]["AirportCode"].stringValue
+        if originAirportCode == "" {
+            self.originAirportCode = "N/A"
+        }
         
-        self.originAirportCode = json["FlightStatusResource"]["Flights"]["Flight"]["Departure"]["AirportCode"].stringValue
-        self.depSchedTime = json["FlightStatusResource"]["Flights"]["Flight"]["Departure"]["ScheduledTimeUTC"]["DateTime"].stringValue
-        self.depActualTime = json["FlightStatusResource"]["Flights"]["Flight"]["Departure"]["ActualTimeUTC"]["DateTime"].stringValue
+        self.depSchedTime = json["Departure"]["ScheduledTimeUTC"]["DateTime"].stringValue
+        if depSchedTime == "" {
+            self.depSchedTime = "N/A"
+        }
+        self.depActualTime = json["Departure"]["ActualTimeUTC"]["DateTime"].stringValue
+        if depActualTime == "" {
+            self.depActualTime = "N/A"
+        }
         
-        self.depTerminal = json["FlightStatusResource"]["Flights"]["Flight"]["Departure"]["Terminal"]["Name"].stringValue
-        self.depGate = json["FlightStatusResource"]["Flights"]["Flight"]["Departure"]["Terminal"]["Gate"].stringValue
+        self.depTerminal = json["Departure"]["Terminal"]["Name"].stringValue
+        if depTerminal == "" {
+            self.depTerminal = "N/A"
+        }
+        self.depGate = json["Departure"]["Terminal"]["Gate"].stringValue
+        if depGate == "" {
+            self.depGate = "N/A"
+        }
         
-        self.destinationAirportCode = json["FlightStatusResource"]["Flights"]["Flight"]["Arrival"]["AirportCode"].stringValue
-        self.arrSchedTime = json["FlightStatusResource"]["Flights"]["Flight"]["Arrival"]["ScheduledTimeUTC"]["DateTime"].stringValue
-        self.arrActualTime = json["FlightStatusResource"]["Flights"]["Flight"]["Arrival"]["ActualTimeUTC"]["DateTime"].stringValue
-        self.arrTerminal = json["FlightStatusResource"]["Flights"]["Flight"]["Arrival"]["Terminal"]["Name"].stringValue
-        self.arrGate = json["FlightStatusResource"]["Flights"]["Flight"]["Arrival"]["Terminal"]["Gate"].stringValue
+        self.destinationAirportCode = json["Arrival"]["AirportCode"].stringValue
+        if destinationAirportCode == "" {
+            self.destinationAirportCode = "N/A"
+        }
+        self.arrSchedTime = json["Arrival"]["ScheduledTimeUTC"]["DateTime"].stringValue
+        if arrSchedTime == "" {
+            self.arrSchedTime = "N/A"
+        }
+        self.arrActualTime = json["Arrival"]["ActualTimeUTC"]["DateTime"].stringValue
+        if arrActualTime == "" {
+            self.arrActualTime = "N/A"
+        }
+        self.arrTerminal = json["Arrival"]["Terminal"]["Name"].stringValue
+        if arrTerminal == "" {
+            self.arrTerminal = "N/A"
+        }
+        self.arrGate = json["Arrival"]["Terminal"]["Gate"].stringValue
+        if arrGate == "" {
+            self.arrGate = "N/A"
+        }
         
-        let startIndex = depSchedTime.index(depSchedTime.startIndex, offsetBy: 11)
-        let endIndex = depSchedTime.index(startIndex, offsetBy: 5)
-        let range = startIndex..<endIndex
-        depSchedTimeShort = String(depSchedTime[range])
-        depActualTimeShort = String(depActualTime[range])
-        arrSchedTimeShort = String(arrSchedTime[range])
-        arrActualTimeShort = String(arrActualTime[range])
+        var startIndex = depSchedTime!.index(depSchedTime!.startIndex, offsetBy: 11)
+        var endIndex = depSchedTime!.index(startIndex, offsetBy: 5)
+        var range = startIndex..<endIndex
+        if depSchedTime == "N/A" {
+            depSchedTimeShort = "N/A"
+        } else {
+            depSchedTimeShort = String(depSchedTime![range])
+        }
+        if depActualTime == "N/A" {
+            depActualTimeShort = "N/A"
+        } else {
+            depActualTimeShort = String(depActualTime![range])
+        }
+        if arrSchedTime == "N/A" {
+            arrSchedTimeShort = "N/A"
+        } else {
+            arrSchedTimeShort = String(arrSchedTime![range])
+        }
+        if arrActualTime == "N/A" {
+            arrActualTimeShort = "N/A"
+        } else {
+            arrActualTimeShort = String(arrActualTime![range])
+        }
     }
 }

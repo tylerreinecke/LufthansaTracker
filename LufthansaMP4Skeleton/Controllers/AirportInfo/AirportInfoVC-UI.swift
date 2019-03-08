@@ -12,6 +12,7 @@ import MapKit
 extension AirportInfoVC {
 
     func initUI() {
+        //departingFlights.append
         self.title = airport.name
         setupMapView()
         setupViewSelect()

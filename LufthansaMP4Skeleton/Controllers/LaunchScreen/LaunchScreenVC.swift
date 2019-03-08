@@ -26,25 +26,26 @@ class LaunchScreenVC: UIViewController {
         launchButton = UIButton(frame: CGRect(x: 0, y: 0, width: 150, height: 50))
         launchButton.center = CGPoint(x: view.frame.midX, y: view.frame.height - 150)
         launchButton.setTitle("Launch!", for: .normal)
+        launchButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20.0)
         launchButton.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.3)
-        launchButton.setTitleColor(Constants.jade, for: .normal)
+        launchButton.setTitleColor(UIColor(red: 108/255, green: 169/255, blue: 130/255, alpha: 1.0), for: .normal)
         launchButton.layer.borderWidth = 3.0
         launchButton.layer.cornerRadius = 15.0
-        launchButton.layer.borderColor = Constants.jade.cgColor
+        launchButton.layer.borderColor = UIColor(red: 108/255, green: 169/255, blue: 130/255, alpha: 1.0).cgColor
         launchButton.addTarget(self, action: #selector(pressLaunch), for: .touchUpInside)
         view.addSubview(launchButton)
     }
     
     func loadAirports() {
         LufthansaAPIClient.getAuthToken {
-            LufthansaAPIClient.getAirports1(completion: {
-                print("We got airports 1 :)")
+            LufthansaAPIClient.getAirports(limit: "100", offset: "0", completion: {
+                print(":)")
             })
-            LufthansaAPIClient.getAirports2(completion: {
-                print("We got airports 2 :)")
+            LufthansaAPIClient.getAirports(limit: "100", offset: "100", completion: {
+                print(":)")
             })
-            LufthansaAPIClient.getAirports3(completion: {
-                print("We got airports 3 :)")
+            LufthansaAPIClient.getAirports(limit: "30", offset: "200", completion: {
+                print(":)")
             })
         }
     }

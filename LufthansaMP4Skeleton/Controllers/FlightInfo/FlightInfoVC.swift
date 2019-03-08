@@ -27,13 +27,17 @@ class FlightInfoVC: UIViewController {
     var actualDep : UILabel!
     var schedArr : UILabel!
     var actualArr : UILabel!
+    var aircraftCode : UILabel!
+    
+    var schedTag : UILabel!
+    var actualTag : UILabel!
+    var termGateTag : UILabel!
     
     var map : MKMapView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //print(flight!)
         initUI()
     }
 }

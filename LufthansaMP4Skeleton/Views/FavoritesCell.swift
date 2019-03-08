@@ -29,42 +29,49 @@ class FavoritesCell: UITableViewCell {
     func initCellFrom(size: CGSize) {
         self.size = size
         //UI Positioning
-        flNum = UILabel(frame: CGRect(x: 10, y: 10, width: size.width / 2 - 10, height: size.height / 2 - 15))
+        flNum = UILabel(frame: CGRect(x: 30, y: 10, width: size.width / 2 - 10, height: size.height / 2 - 15))
         flNum.textAlignment = .left
+        flNum.font = UIFont.boldSystemFont(ofSize: 20.0)
         contentView.addSubview(flNum)
         
-        flStatus = UILabel(frame: CGRect(x: 10, y: size.height / 2 + 5, width: size.width / 2 - 10, height: size.height / 2 - 15))
+        flStatus = UILabel(frame: CGRect(x: 30, y: size.height / 2 + 5, width: size.width / 2 - 10, height: size.height / 2 - 15))
         flStatus.textAlignment = .left
+        flStatus.font = UIFont.boldSystemFont(ofSize: 20.0)
+        flStatus.textColor = Constants.gray
         contentView.addSubview(flStatus)
         
         takeoff = UIImageView(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
-        takeoff.center = CGPoint(x: size.width / 2 - 20, y: flNum.frame.midY)
+        takeoff.center = CGPoint(x: size.width / 2 + 40, y: flNum.frame.midY)
         takeoff.image = UIImage(named: "takeoffIcon")
         contentView.addSubview(takeoff)
         
         landing = UIImageView(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
-        landing.center = CGPoint(x: size.width / 2 - 20, y: flStatus.frame.midY)
+        landing.center = CGPoint(x: size.width / 2 + 40, y: flStatus.frame.midY)
         landing.image = UIImage(named: "landingIcon")
         contentView.addSubview(landing)
         
-        flOrigin = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: flNum.frame.height))
-        flOrigin.center = CGPoint(x: takeoff.frame.maxX + 30, y: flNum.frame.midY)
+        flOrigin = UILabel(frame: CGRect(x: 0, y: 0, width: 70, height: flNum.frame.height))
+        flOrigin.center = CGPoint(x: takeoff.frame.maxX + 45, y: flNum.frame.midY)
         flOrigin.textAlignment = .left
+        flOrigin.font = UIFont.boldSystemFont(ofSize: 20.0)
         contentView.addSubview(flOrigin)
         
-        flDestination = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: flNum.frame.height))
-        flDestination.center = CGPoint(x: landing.frame.maxX + 30, y: flStatus.frame.midY)
+        flDestination = UILabel(frame: CGRect(x: 0, y: 0, width: 70, height: flNum.frame.height))
+        flDestination.center = CGPoint(x: landing.frame.maxX + 45, y: flStatus.frame.midY)
         flDestination.textAlignment = .left
+        flDestination.font = UIFont.boldSystemFont(ofSize: 20.0)
         contentView.addSubview(flDestination)
         
-        flDepTime = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: flNum.frame.height))
-        flDepTime.center = CGPoint(x: flOrigin.frame.maxX + 27, y: flNum.frame.midY)
+        flDepTime = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: flNum.frame.height))
+        flDepTime.center = CGPoint(x: flOrigin.frame.maxX + 45, y: flNum.frame.midY)
         flDepTime.textAlignment = .left
+        flDepTime.font = UIFont.boldSystemFont(ofSize: 20.0)
         contentView.addSubview(flDepTime)
         
-        flArrTime = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: flStatus.frame.height))
-        flArrTime.center = CGPoint(x: flDestination.frame.maxX + 27, y: flStatus.frame.midY)
+        flArrTime = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: flStatus.frame.height))
+        flArrTime.center = CGPoint(x: flDestination.frame.maxX + 45, y: flStatus.frame.midY)
         flArrTime.textAlignment = .left
+        flArrTime.font = UIFont.boldSystemFont(ofSize: 20.0)
         contentView.addSubview(flArrTime)
         
     }
@@ -95,8 +102,8 @@ class FavoritesCell: UITableViewCell {
             }
         }
         */
-        flDepTime.text = newFlight.depActualTime
-        flArrTime.text = newFlight.arrActualTime
+        flDepTime.text = newFlight.depSchedTimeShort
+        flArrTime.text = newFlight.arrSchedTimeShort
     }
 
 }
